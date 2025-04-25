@@ -1,5 +1,5 @@
 def reverse_string(string):
-    # initialized an empty array to store the revesed string
+    # initialized an empty array to store the reversed string
     reversed_string = []
     for i in range(len(string), 0, -1):
         # used the length of the string to find the total number if characters
