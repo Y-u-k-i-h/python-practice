@@ -115,3 +115,66 @@ def reverse_string(string):
 ---
 
 ## 5. Factorial (Recursive)
+I first used a for loop to set up a base case which was the factorial of zero is one.<br>
+```python
+    if n == 0:
+        return 1
+```
+In the else statement there is this `return n * factorial_recursive(n-1)` <br>
+This returns `n` multiplied by calling the function in itself with the argument `n-1` <br>
+The usefulness of this is that we generate new stack frames that will rely upon themselves. Let me present a visual to grasp the idea. Lets say we are to compute the factorial of `5`<br>
+`factorial_recursive(5)` will call `factorial_recursive(5-1) ...`and so on and so forth till it reaches `factorial_recursive(0)` so now `1` gets returned and that is what is multiplied with the current value on `n` for each respective function.
+```sql
+factorial_recursive(5)
+│
+├── 5 * factorial_recursive(4)
+│       │
+│       ├── 4 * factorial_recursive(3)
+│       │       │
+│       │       ├── 3 * factorial_recursive(2)
+│       │       │       │
+│       │       │       ├── 2 * factorial_recursive(1)
+│       │       │       │       │
+│       │       │       │       └── 1 * factorial_recursive(0)
+│       │       │       │               └── returns 1
+│       │       │       │
+│       │       │       └── returns 1 * 1 = 1
+│       │       │
+│       │       └── returns 2 * 1 = 2
+│       │
+│       └── returns 3 * 2 = 6
+│
+├── returns 4 * 6 = 24
+│
+└── returns 5 * 24 = 120
+
+```
+
+---
+
+## 6. Sum of Digits of a Number
+Started off by initializing a variable `total_sum` to hold the total sum. <br>
+Had an if statement check numbers between the range of -9 to 9 and if the number falls between that then return the absolute value if the number. The reason for this is that for single digits we don't have neighbouring numbers to add them on to except for example, if it `1`, we can represent it as `01` so we'll have to do `0+1` which is just the number itself, and for negative numbers since we are just concerned with adding individual digits, we can just ignore it that's why I used the `abs()` function to give us the absolute value of the function.<br>
+```python
+# initialized a variable to hold the sum of the numbers
+    total_sum = 0
+    # i did this because if it's a single digit, then the sum would have to be the number itself
+    # so i needed to return the range which contains single digits
+    if n  >= -9 and n <= 9:
+        return abs(n)
+```
+In the else block, I type casted the input to a string to enable to iterate through the individual digits as I add them to `total_sum` I type cast the individual string elements to type `int` before adding them.<br>
+I then encountered a little problem where for negative numbers, the negative sign `-` could not be expressed as`int` so I had to add an if statement to check if the current element is equal to `-` so that I can skip it using the `continue` keyword.
+```python
+    else:
+        # converted the number to a string
+        # to help me iterate through individual digits
+        n = str(n)
+        for digit in n:
+            # here i stripped off the '-' since it will throw an error as one can't add
+            # a character and a number
+            if digit == '-':
+                continue
+            total_sum += int(digit)
+        return total_sum
+```
