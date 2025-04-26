@@ -1,3 +1,11 @@
+# Questions
+* [Question One.](#1-sum-all-elements-in-a-list)
+* [Question Two.](#2-check-if-a-number-is-even-or-odd)
+* [Question Three.](#3-compute-factorial-using-a-loop)
+* [Question Four.](#4-reverse-a-string-without-using--1-or-built-in-methods)
+* [Question Five.](#5-factorial-recursive)
+* [Questoin Six.](#6-sum-of-digits-of-a-number)
+
 ## 1. Sum all elements in a list
 
 ```python
@@ -120,7 +128,11 @@ I first used a for loop to set up a base case which was the factorial of zero is
     if n == 0:
         return 1
 ```
-In the else statement there is this `return n * factorial_recursive(n-1)` <br>
+In the else statement there is this `n * factorial_recursive(n-1)` <br>
+```python
+    else:
+return n * factorial_recursive(n-1)
+```
 This returns `n` multiplied by calling the function in itself with the argument `n-1` <br>
 The usefulness of this is that we generate new stack frames that will rely upon themselves. Let me present a visual to grasp the idea. Lets say we are to compute the factorial of `5`<br>
 `factorial_recursive(5)` will call `factorial_recursive(5-1) ...`and so on and so forth till it reaches `factorial_recursive(0)` so now `1` gets returned and that is what is multiplied with the current value on `n` for each respective function.
