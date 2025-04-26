@@ -15,7 +15,7 @@ I then had a for loop to iterate through the list of numbers
 ```py
     for i in list:
 ```
-Since with every iteration 'i' becomes one of the numbers in the list, i add i to x and then return
+Since with every iteration `i` becomes one of the numbers in the list, I add `i` to `x` and then return
 ```python
     x += 1
 return x
@@ -96,3 +96,22 @@ Then in the else statement, I used a for loop to start from the number itself to
 ---
 
 ## 4. Reverse a string (without using [::-1] or built-in methods).
+I first initialized an empty array to hold my revesed string.<br>
+I then used a for loop to iterate through the whole string, but I used the `len()` function to get the length of the string and use that as the starting number and 0 the stoping number. The for loop then decrements `i` by one with each iteration.<br>
+I then append `i-1` to my array. The reason for that is to cater for element indexing as counting starts from 0. I then return the reversed string, but I also realised that when I just return the array, output will be in array format, so I used `"".join(reversed_string)`, the `""` means that I do not want to separate the strings.
+```python
+def reverse_string(string):
+    # initialized an empty array to store the reversed string
+    reversed_string = []
+    for i in range(len(string), 0, -1):
+        # used the length of the string to find the total number if characters
+        # appended the characters in the array from the highest index to the lowest (0)
+        # i - 1, is to cater for array indexing starting from 0
+        reversed_string.append(string[i-1])
+    # join back the words to return a string and not an array of reversed characters
+    return "".join(reversed_string)
+```
+
+---
+
+## 5. Factorial (Recursive)
